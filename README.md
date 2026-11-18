@@ -142,7 +142,7 @@ The page uses semantic landmarks and headings, a skip link, visible keyboard foc
 
 ## Fonts and asset licensing
 
-Manrope is self-hosted as WOFF2, served with `font-display: swap`; its SIL Open Font License is included at `assets/fonts/OFL.txt`. The supplied foundation SVG and Manual Middle School PNG are retained as provided. Confirm permission and usage rights for any new photograph, logo, or other material before publishing it.
+Manrope is self-hosted as WOFF2, served with `font-display: swap`; its SIL Open Font License is included at `assets/fonts/OFL.txt`. The supplied foundation SVG and an optimized Manual Middle School logo are included in `assets/`. Confirm permission and usage rights for any new photograph, logo, or other material before publishing it.
 
 ## Launch checklist and limitations
 

@@ -50,7 +50,7 @@ description: The Thunder Family Foundation raises funds to support Manual Middle
     </div>
     <div class="prose mission__copy">{{ mission.content | markdownify }}</div>
     <div class="mission__school">
-      <img src="{{ '/assets/manual_middle_logo.png' | relative_url }}" alt="" width="2048" height="1072" loading="lazy">
+      <img src="{{ '/assets/manual-middle-logo-mark.png' | relative_url }}" alt="" width="336" height="283" loading="lazy">
       <span>Manual Middle School</span>
     </div>
   </div>
