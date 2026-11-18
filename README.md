@@ -84,7 +84,9 @@ footer_links:
     url: "https://example.org/financial-information"
 ```
 
-Replace these examples only with confirmed information. The donation buttons, contact email, EIN, and footer links are omitted when their values are blank; no placeholder destinations are published. Use a secure, confirmed external donation destination. The site does not collect or process payments.
+Replace these examples only with confirmed information. Until a donation URL is supplied, the header and hero buttons lead to a coming-soon notice, and the online donation button is disabled. A missing contact email or EIN is labeled as coming soon; footer links without a destination are omitted. Use a secure, confirmed external donation destination. The site does not collect or process payments.
+
+Edit the `board_members` list in the same file to update the names shown in the footer.
 
 ### Giving methods
 
@@ -106,12 +108,12 @@ The online-giving card uses `donation_url` from `_data/organization.yml`. The ma
 
 ### Fundraiser: edit, preview, and disable
 
-All event settings and copy are in `_fundraisers/current.md`. It is disabled by default; while disabled there is no event trigger, dialog, fallback section, or fundraiser JavaScript on the page.
+All event settings and copy are in `_fundraisers/current.md`. It currently displays a clearly labeled placeholder with ticket sales disabled; this is not an announcement of a real event. While the fundraiser is disabled, there is no event trigger, dialog, fallback section, or fundraiser JavaScript on the page.
 
-To enable an event, set `enabled: true`, give it a stable unique `event_id` (for example `spring-benefit-2027`), fill in the title and confirmed external event URL, and edit its Markdown description. Date and location are optional. `cta_label` and `auto_open` may also be changed. Do not invent dates, venues, or ticket destinations.
+To publish a real event, set `placeholder: false` and `enabled: true`, give it a stable unique `event_id` (for example `spring-benefit-2027`), fill in the title and confirmed external event URL, and edit its Markdown description. Date and location are optional. `cta_label` and `auto_open` may also be changed. Do not invent dates, venues, or ticket destinations.
 
 - Set `enabled: false` to remove the event from the normal page.
-- In a JavaScript-enabled browser, the “Upcoming fundraiser” link opens the native dialog. It has a Close control, a “Maybe later” control, Escape support, focus containment, and focus restoration. The link still points to the event information when JavaScript is unavailable; in that case, the event details and registration link appear inline.
+- In a JavaScript-enabled browser, the “Upcoming fundraiser” link opens the native dialog. It has a Close control, a “Maybe later” control, Escape support, focus containment, and focus restoration. The link still points to the event information when JavaScript is unavailable; in that case, the event details and a configured registration link appear inline.
 - To preview locally, edit the file and run `bundle exec jekyll serve`. Test both the enabled and disabled settings before publishing.
 - `auto_open: false` is the default. If enabled, the modal auto-opens at most once per browser session for each `event_id`. Dismissal is stored in `sessionStorage`; changing the event ID permits one new auto-open. The trigger always remains available to reopen the event.
 
@@ -119,7 +121,7 @@ The event is controlled by its explicit `enabled` flag, not its date. Disable or
 
 ## GitHub Pages setup
 
-The workflow in `.github/workflows/pages.yml` builds pull requests without deploying, and builds and deploys pushes to `main` through the GitHub Pages artifact flow. It uses `configure-pages` to read the configured site origin and base path, then writes a temporary Jekyll config override for production metadata and URL generation. Pull requests intentionally build with `/preview` to exercise non-root asset paths. Production deployments are not canceled once started; superseded pull-request builds may be canceled.
+The workflow in `.github/workflows/pages.yml` builds pull requests without deploying, and builds and deploys pushes to `main` through the GitHub Pages artifact flow. Both jobs use the pinned `ubuntu-24.04` runner image to avoid automatic `ubuntu-latest` migrations. It uses `configure-pages` to read the configured site origin and base path, then writes a temporary Jekyll config override for production metadata and URL generation. Pull requests intentionally build with `/preview` to exercise non-root asset paths. Production deployments are not canceled once started; superseded pull-request builds may be canceled.
 
 1. Push this repository to GitHub and make sure its default publishing branch is `main` (or update the workflow branch filter).
 2. In **Settings → Pages**, choose **GitHub Actions** as the build and deployment source.
@@ -151,14 +153,14 @@ Before launch, confirm and configure:
 - Check mailing instructions and any approved privacy/financial-information links.
 - The original, approved student/community photo, its dimensions, and alt text if a hero image is desired.
 - The canonical site URL, repository `baseurl` or custom domain, and GitHub Pages settings.
-- Any real fundraiser title, stable ID, event details, and registration URL before enabling it.
+- Any real fundraiser title, stable ID, event details, and registration URL before replacing the placeholder.
 
 This static site does not process donations, manage registrations, provide legal/tax advice, or automatically expire events. Do not publish personal contact details or donor information without approval.
 
 ## Troubleshooting and reverting
 
 - **A build fails:** check the Actions log or run `bundle exec jekyll build` locally. YAML indentation and unmatched quotes in front matter are common causes.
-- **A button/link is missing:** verify the relevant URL or contact email is set in `_data/organization.yml`; unconfigured destinations are deliberately not rendered.
+- **A donation button is disabled:** add the confirmed donation URL in `_data/organization.yml`. Add a contact email there to make the contact link open an email.
 - **An image is missing:** check the path begins with `/assets/`, the file exists, and the path and alt text are both set in `_sections/hero.md`.
-- **A fundraiser does not appear:** confirm `enabled: true`, a title, and a valid `cta_url` are present.
+- **A fundraiser does not appear:** confirm `enabled: true`, an `event_id`, and a title are present; a real event also needs a valid `cta_url`.
 - **A recent edit should be undone:** on GitHub, open the merged commit and choose **Revert**, or create a new commit restoring the previous file contents. Do not rewrite shared branch history.

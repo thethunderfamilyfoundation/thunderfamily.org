@@ -1,7 +1,8 @@
 ---
-enabled: false
-event_id: ""
-title: ""
+enabled: true
+placeholder: true
+event_id: "fundraiser-placeholder"
+title: "Come together for Manual."
 date_text: ""
 location: ""
 cta_label: View event & tickets
@@ -9,4 +10,4 @@ cta_url: ""
 auto_open: false
 ---
 
-Add a short description of the fundraiser here.
+Join our school community and help support what's next.

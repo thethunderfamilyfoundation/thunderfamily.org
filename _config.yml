@@ -13,6 +13,7 @@ exclude:
   - vendor
   - .bundle
   - .github
+  - "Thunder Family Foundation footer redesign.png"
 
 collections:
   sections:

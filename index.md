@@ -7,26 +7,24 @@ description: The Thunder Family Foundation raises funds to support Manual Middle
 {% assign hero = site.sections | where: "slug", "hero" | first %}
 {% assign mission = site.sections | where: "slug", "mission" | first %}
 {% assign fundraiser = site.fundraisers | first %}
-{% assign donation_url = site.data.organization.donation_url %}
+{% assign donation_url = site.data.organization.donation_url | default: "#donation-info" %}
 {% assign fundraiser_ready = false %}
-{% if fundraiser.enabled and fundraiser.event_id and fundraiser.event_id != "" and fundraiser.title and fundraiser.title != "" and fundraiser.cta_url and fundraiser.cta_url != "" %}
-  {% assign fundraiser_ready = true %}
+{% if fundraiser.enabled and fundraiser.event_id and fundraiser.event_id != "" and fundraiser.title and fundraiser.title != "" %}
+  {% if fundraiser.placeholder or fundraiser.cta_url and fundraiser.cta_url != "" %}
+    {% assign fundraiser_ready = true %}
+  {% endif %}
 {% endif %}
 
 <section class="hero page-width" aria-labelledby="hero-title">
   <div class="hero__copy">
     <h1 id="hero-title">{{ hero.title | escape }}</h1>
     <div class="prose hero__intro">{{ hero.content | markdownify }}</div>
-    {% if donation_url and donation_url != "" or fundraiser_ready %}
-      <div class="hero__actions">
-        {% if donation_url and donation_url != "" %}
-          <a class="button" href="{{ donation_url | escape }}">Donate to support Manual</a>
-        {% endif %}
-        {% if fundraiser_ready %}
-          <a class="text-link" href="#fundraiser-info" data-fundraiser-trigger>Upcoming fundraiser <span aria-hidden="true">↗</span></a>
-        {% endif %}
-      </div>
-    {% endif %}
+    <div class="hero__actions">
+      <a class="button" href="{{ donation_url | escape }}">Donate to support Manual</a>
+      {% if fundraiser_ready %}
+        <a class="text-link" href="#fundraiser-info" data-fundraiser-trigger>Upcoming fundraiser <span aria-hidden="true">↗</span></a>
+      {% endif %}
+    </div>
   </div>
   {% if hero.image and hero.image != "" and hero.image_alt and hero.image_alt != "" %}
     <figure class="hero__media">
@@ -58,7 +56,7 @@ description: The Thunder Family Foundation raises funds to support Manual Middle
   </div>
 </section>
 
-<section class="giving page-width" aria-labelledby="giving-title">
+<section class="giving page-width" id="donation-info" aria-labelledby="giving-title">
   <p class="eyebrow eyebrow--light">Ways to give</p>
   <h2 id="giving-title">Make a difference at Manual.</h2>
   <div class="giving__grid">
@@ -69,10 +67,17 @@ description: The Thunder Family Foundation raises funds to support Manual Middle
           <h3>{{ method.title | escape }}</h3>
           <p class="giving-card__description">{{ method.description | escape }}</p>
           <div class="prose">{{ method.content | markdownify }}</div>
-          {% if method.slug == "online" and donation_url and donation_url != "" %}
+          {% if method.slug == "online" and site.data.organization.donation_url and site.data.organization.donation_url != "" %}
             <a class="button button--small" href="{{ donation_url | escape }}">{{ method.link_label | default: "Donate now" | escape }}</a>
-          {% elsif method.slug == "other" and site.data.organization.contact_email and site.data.organization.contact_email != "" %}
-            <a class="text-link" href="mailto:{{ site.data.organization.contact_email | escape }}">{{ method.link_label | default: "Contact us" | escape }}</a>
+          {% elsif method.slug == "online" %}
+            <p class="giving-card__notice">Online donation link coming soon.</p>
+            <button class="button button--small" type="button" disabled>Donate now</button>
+          {% elsif method.slug == "other" %}
+            {% if site.data.organization.contact_email and site.data.organization.contact_email != "" %}
+              <a class="text-link" href="mailto:{{ site.data.organization.contact_email | escape }}">{{ method.link_label | default: "Contact us" | escape }}</a>
+            {% else %}
+              <a class="text-link" href="#footer-contact">{{ method.link_label | default: "Contact us" | escape }}</a>
+            {% endif %}
           {% endif %}
         </article>
       {% endif %}
@@ -88,7 +93,12 @@ description: The Thunder Family Foundation raises funds to support Manual Middle
     {% if fundraiser.date_text and fundraiser.date_text != "" %}<p>{{ fundraiser.date_text | escape }}</p>{% endif %}
     {% if fundraiser.location and fundraiser.location != "" %}<p>{{ fundraiser.location | escape }}</p>{% endif %}
     <div class="prose">{{ fundraiser.content | markdownify }}</div>
-    <a class="button" href="{{ fundraiser.cta_url | escape }}">{{ fundraiser.cta_label | default: "View event & tickets" | escape }}</a>
+    {% if fundraiser.placeholder %}
+      <p class="fundraiser-placeholder">Fundraiser details are placeholders; no event has been announced.</p>
+      <button class="button" type="button" disabled>Event tickets coming soon</button>
+    {% else %}
+      <a class="button" href="{{ fundraiser.cta_url | escape }}">{{ fundraiser.cta_label | default: "View event & tickets" | escape }}</a>
+    {% endif %}
   </section>
   {% include fundraiser-dialog.html fundraiser=fundraiser %}
   <script defer src="{{ '/assets/js/fundraiser.js' | relative_url }}"></script>

@@ -1,9 +1,7 @@
 ---
 title: Give online
-description: Support students at Manual with an online gift.
+description: Make a gift through our donation page.
 link_label: Donate now
 order: 1
 enabled: true
 ---
-
-Make a gift online to help support Manual Middle School and its students.

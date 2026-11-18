@@ -28,9 +28,7 @@
         <a class="site-header__brand" href="{{ '/' | relative_url }}" aria-label="Thunder Family Foundation home">
           <img src="{{ '/assets/thunder-family-logo.svg' | relative_url }}" alt="" width="940" height="260">
         </a>
-        {% if site.data.organization.donation_url and site.data.organization.donation_url != "" %}
-          <a class="button button--header" href="{{ site.data.organization.donation_url | escape }}">Donate</a>
-        {% endif %}
+        <a class="button button--header" href="{{ site.data.organization.donation_url | default: '#donation-info' | escape }}">Donate</a>
       </div>
     </header>
     <main id="main">
@@ -41,15 +39,29 @@
         <a class="footer__brand" href="{{ '/' | relative_url }}" aria-label="Thunder Family Foundation home">
           <img src="{{ '/assets/thunder-family-logo.svg' | relative_url }}" alt="" width="940" height="260" loading="lazy">
         </a>
-        <div class="footer__contact">
+        <div class="footer__contact" id="footer-contact">
           <strong>Let’s support Manual together.</strong>
           {% if site.data.organization.contact_email and site.data.organization.contact_email != "" %}
             <a href="mailto:{{ site.data.organization.contact_email | escape }}">{{ site.data.organization.contact_email | escape }}</a>
+          {% else %}
+            <span>Contact email: Coming soon</span>
           {% endif %}
           {% if site.data.organization.ein and site.data.organization.ein != "" %}
             <span>EIN: {{ site.data.organization.ein | escape }}</span>
+          {% else %}
+            <span>EIN: Coming soon</span>
           {% endif %}
         </div>
+        {% if site.data.organization.board_members.size > 0 %}
+          <div class="footer__board">
+            <strong>Current Board Members</strong>
+            <ul>
+              {% for member in site.data.organization.board_members %}
+                <li>{{ member | escape }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
         {% if site.data.organization.footer_links.size > 0 %}
           <nav class="footer__links" aria-label="Organization information">
             {% for link in site.data.organization.footer_links %}

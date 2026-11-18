@@ -8,12 +8,12 @@
 
 :root {
   color-scheme: light;
-  --color-navy: #243f7d;
-  --color-gold: #ffda4b;
+  --color-navy: #082d70;
+  --color-gold: #ffc400;
   --color-cyan: #00add4;
-  --color-warm-white: #f7f6f0;
+  --color-warm-white: #f3f1ec;
   --color-white: #fff;
-  --color-ink: #172f63;
+  --color-ink: #061c86;
   --font-body: "Manrope", "Avenir Next", Avenir, sans-serif;
   --width-content: 72rem;
   --space-1: 0.5rem;
@@ -21,7 +21,6 @@
   --space-3: 1.5rem;
   --space-4: 2rem;
   --space-5: clamp(2.5rem, 6vw, 5rem);
-  --space-6: clamp(3.5rem, 8vw, 6.5rem);
   --focus-ring: 0 0 0 3px var(--color-navy);
   --motion-fast: 160ms ease;
 }
@@ -90,7 +89,7 @@ a {
 }
 
 .site-header {
-  background: var(--color-warm-white);
+  background: var(--color-white);
 }
 
 .site-header__inner {
@@ -105,6 +104,7 @@ a {
 .footer__brand {
   display: block;
   width: min(13.5rem, 54vw);
+  max-width: 100%;
   flex: 0 1 auto;
 }
 
@@ -138,6 +138,16 @@ a {
   background: var(--color-ink);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.button:disabled:hover {
+  transform: none;
+  background: var(--color-navy);
+}
+
 .button--header {
   min-width: 6rem;
   min-height: 2.75rem;
@@ -155,7 +165,7 @@ a {
   min-height: 23rem;
   align-items: center;
   gap: var(--space-4);
-  padding-block: var(--space-5);
+  padding-block: clamp(2rem, 4vw, 3.5rem);
 }
 
 .hero__copy {
@@ -163,9 +173,9 @@ a {
 }
 
 .hero h1 {
-  max-width: 12ch;
+  max-width: 16ch;
   margin: 0;
-  font-size: clamp(2.35rem, 6vw, 4rem);
+  font-size: clamp(2.15rem, 4vw, 3.25rem);
   font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 1.08;
@@ -188,9 +198,9 @@ a {
 
 .hero__actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.5rem;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.3rem;
   margin-top: 1.5rem;
 }
 
@@ -228,8 +238,9 @@ a {
 
 .hero__media img {
   width: 100%;
+  height: auto;
   max-height: 26rem;
-  aspect-ratio: 1.4;
+  aspect-ratio: 1.75;
   object-fit: cover;
 }
 
@@ -299,11 +310,19 @@ a {
 }
 
 .giving {
-  padding-block: var(--space-6);
+  padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
 .eyebrow--light {
   color: var(--color-navy);
+}
+
+.giving .eyebrow--light {
+  color: #854000;
+}
+
+.giving .eyebrow--light::after {
+  background: var(--color-gold);
 }
 
 .giving h2 {
@@ -331,7 +350,6 @@ a {
 .giving-card__description {
   margin: 0 0 0.55rem;
   font-size: 0.92rem;
-  font-weight: 700;
   line-height: 1.45;
 }
 
@@ -344,10 +362,17 @@ a {
   margin: 0;
 }
 
+.giving-card__notice,
+.fundraiser-placeholder {
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
 .giving__disclaimer {
   max-width: 52rem;
   margin: 2.25rem auto 0;
   font-size: 0.8rem;
+  font-style: italic;
   line-height: 1.5;
   text-align: center;
 }
@@ -374,6 +399,20 @@ a {
 .footer__contact strong {
   width: 100%;
   font-size: 0.95rem;
+}
+
+.footer__board {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.footer__board ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1rem;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .footer__links {
@@ -516,7 +555,7 @@ a {
   .hero {
     grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 1.05fr);
     gap: clamp(2rem, 5vw, 4.5rem);
-    min-height: 28rem;
+    min-height: 24rem;
   }
 
   .mission__inner {
@@ -550,13 +589,78 @@ a {
     border-top: 0;
   }
 
+  .giving-card {
+    padding-top: 0;
+    border-top: 0;
+  }
+
   .footer__inner {
-    grid-template-columns: minmax(12rem, 1fr) minmax(15rem, 1fr) auto;
+    grid-template-columns: minmax(10rem, 0.8fr) minmax(14rem, 1.25fr) minmax(14rem, 1fr);
     gap: 1.5rem;
   }
 
   .footer__brand {
     width: 12rem;
+    max-width: 100%;
+  }
+
+  .footer__contact,
+  .footer__board {
+    min-height: 4rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--color-gold);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .site-header__inner {
+    min-height: 4.5rem;
+  }
+
+  .button--header {
+    display: none;
+  }
+
+  .hero {
+    min-height: 0;
+    gap: 1.25rem;
+    padding-block: 1.5rem 2rem;
+  }
+
+  .hero__actions .button {
+    width: 100%;
+  }
+
+  .hero__actions .text-link {
+    align-self: center;
+  }
+
+  .mission__inner {
+    gap: 1rem;
+    padding-block: 1.75rem;
+  }
+
+  .giving {
+    padding-block: 2rem;
+  }
+
+  .giving__grid {
+    gap: 1rem;
+  }
+
+  .footer__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 1.25rem;
+  }
+
+  .footer__contact {
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-gold);
+  }
+
+  .footer__board {
+    grid-column: 1 / -1;
+    justify-self: center;
   }
 }
 
