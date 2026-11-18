@@ -1,0 +1,601 @@
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/manrope-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --color-navy: #243f7d;
+  --color-gold: #ffda4b;
+  --color-cyan: #00add4;
+  --color-warm-white: #f7f6f0;
+  --color-white: #fff;
+  --color-ink: #172f63;
+  --font-body: "Manrope", "Avenir Next", Avenir, sans-serif;
+  --width-content: 72rem;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: clamp(2.5rem, 6vw, 5rem);
+  --space-6: clamp(3.5rem, 8vw, 6.5rem);
+  --focus-ring: 0 0 0 3px var(--color-navy);
+  --motion-fast: 160ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-warm-white);
+  color: var(--color-navy);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+body.dialog-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-width {
+  width: min(100% - 2.5rem, var(--width-content));
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 20;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.75rem 1rem;
+  transform: translateY(-160%);
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  background: var(--color-warm-white);
+}
+
+.site-header__inner {
+  display: flex;
+  min-height: 5.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.site-header__brand,
+.footer__brand {
+  display: block;
+  width: min(13.5rem, 54vw);
+  flex: 0 1 auto;
+}
+
+.site-header__brand img,
+.footer__brand img {
+  width: 100%;
+  height: auto;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.35rem;
+  border: 2px solid var(--color-navy);
+  border-radius: 0.5rem;
+  background: var(--color-navy);
+  color: var(--color-white);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--motion-fast), color var(--motion-fast), transform var(--motion-fast);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  background: var(--color-ink);
+}
+
+.button--header {
+  min-width: 6rem;
+  min-height: 2.75rem;
+  padding-inline: 1.2rem;
+}
+
+.button--small {
+  min-height: 2.75rem;
+  margin-top: 1rem;
+  padding-inline: 1.1rem;
+}
+
+.hero {
+  display: grid;
+  min-height: 23rem;
+  align-items: center;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+}
+
+.hero__copy {
+  max-width: 37rem;
+}
+
+.hero h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.35rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+.hero__intro {
+  max-width: 35rem;
+  margin-top: 1.1rem;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.text-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-ink);
+  font-weight: 800;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+}
+
+.text-link:hover {
+  text-decoration-thickness: 2.5px;
+}
+
+.hero__media {
+  position: relative;
+  margin: 0;
+  isolation: isolate;
+}
+
+.hero__media::after {
+  position: absolute;
+  z-index: -1;
+  right: -0.55rem;
+  bottom: -0.55rem;
+  width: 68%;
+  height: 65%;
+  background: var(--color-gold);
+  content: "";
+}
+
+.hero__media img {
+  width: 100%;
+  max-height: 26rem;
+  aspect-ratio: 1.4;
+  object-fit: cover;
+}
+
+.mission {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.mission__inner {
+  display: grid;
+  align-items: center;
+  gap: 1.75rem;
+  padding-block: var(--space-5);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.45rem;
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.eyebrow::after {
+  width: 2.75rem;
+  height: 0.16rem;
+  background: currentColor;
+  content: "";
+}
+
+.mission h2,
+.giving h2,
+.fundraiser-fallback h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.mission__copy {
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.mission__copy p + p {
+  margin-top: 0.6rem;
+}
+
+.mission__school {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.mission__school img {
+  width: 4.25rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.giving {
+  padding-block: var(--space-6);
+}
+
+.eyebrow--light {
+  color: var(--color-navy);
+}
+
+.giving h2 {
+  margin-bottom: var(--space-4);
+}
+
+.giving__grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.giving-card {
+  padding-top: 1.1rem;
+  border-top: 2px solid var(--color-gold);
+}
+
+.giving-card h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.giving-card__description {
+  margin: 0 0 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.giving-card .prose {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.giving-card .prose p {
+  margin: 0;
+}
+
+.giving__disclaimer {
+  max-width: 52rem;
+  margin: 2.25rem auto 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.footer {
+  background: var(--color-white);
+}
+
+.footer__inner {
+  display: grid;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 1.75rem;
+}
+
+.footer__contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.footer__contact strong {
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.fundraiser-fallback {
+  margin-block: var(--space-5);
+  padding: var(--space-4);
+  border: 1px solid var(--color-navy);
+  background: var(--color-white);
+}
+
+.js .fundraiser-fallback {
+  display: none;
+}
+
+.fundraiser-fallback h2 {
+  margin-bottom: 0.75rem;
+}
+
+.fundraiser-fallback .button {
+  margin-top: 1.25rem;
+}
+
+.fundraiser-dialog {
+  width: min(100% - 2rem, 34rem);
+  max-width: none;
+  max-height: min(90vh, 48rem);
+  max-height: min(90dvh, 48rem);
+  overflow: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0.85rem;
+  background: var(--color-white);
+  color: var(--color-navy);
+  box-shadow: 0 1.5rem 5rem rgb(15 31 63 / 32%);
+  overscroll-behavior: contain;
+}
+
+.fundraiser-dialog::backdrop {
+  background: rgb(15 31 63 / 68%);
+}
+
+.fundraiser-dialog[open] {
+  animation: dialog-in 180ms ease-out both;
+}
+
+.fundraiser-dialog__inner {
+  padding: clamp(1.5rem, 5vw, 2.4rem);
+}
+
+.fundraiser-dialog__close-form {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin: -0.4rem -0.4rem 1.3rem;
+  padding-block: 0.25rem;
+  background: var(--color-white);
+}
+
+.fundraiser-dialog__close {
+  min-width: 3rem;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--color-navy);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.fundraiser-dialog__close span {
+  margin-left: 0.2rem;
+  font-size: 1.2rem;
+}
+
+.fundraiser-dialog h2 {
+  max-width: 16ch;
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.8rem, 7vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.fundraiser-dialog__detail {
+  margin: 0.35rem 0;
+}
+
+.fundraiser-dialog__cta {
+  width: 100%;
+  margin-top: 1.4rem;
+}
+
+.fundraiser-dialog__later {
+  display: flex;
+  width: fit-content;
+  margin: 0.75rem auto 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 48rem) {
+  .page-width {
+    width: min(100% - 4rem, var(--width-content));
+  }
+
+  .site-header__inner {
+    min-height: 6.5rem;
+  }
+
+  .site-header__brand {
+    width: 14.5rem;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 1.05fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    min-height: 28rem;
+  }
+
+  .mission__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 9rem;
+    gap: clamp(1.5rem, 4vw, 3.75rem);
+  }
+
+  .mission__copy {
+    padding-left: clamp(1.25rem, 3vw, 2.75rem);
+    border-left: 2px solid var(--color-gold);
+  }
+
+  .mission__school {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mission__school img {
+    width: 7rem;
+    height: 5.5rem;
+  }
+
+  .giving__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .giving-card + .giving-card {
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--color-gold);
+    border-top: 0;
+  }
+
+  .footer__inner {
+    grid-template-columns: minmax(12rem, 1fr) minmax(15rem, 1fr) auto;
+    gap: 1.5rem;
+  }
+
+  .footer__brand {
+    width: 12rem;
+  }
+}
+
+@media (max-width: 25rem) {
+  .page-width {
+    width: min(100% - 2rem, var(--width-content));
+  }
+
+  .site-header__brand {
+    width: min(12rem, 55vw);
+  }
+
+  .button--header {
+    min-width: 5.25rem;
+    padding-inline: 0.8rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 10.5vw, 2.6rem);
+  }
+
+  .hero__actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mission__school {
+    font-size: 0.82rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

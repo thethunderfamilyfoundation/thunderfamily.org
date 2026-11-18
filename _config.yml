@@ -1,0 +1,40 @@
+title: Thunder Family Foundation
+description: The Thunder Family Foundation raises funds to support Manual Middle School and its students.
+url: ""
+baseurl: ""
+lang: en
+markdown: kramdown
+permalink: pretty
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - plan.md
+  - vendor
+  - .bundle
+  - .github
+
+collections:
+  sections:
+    output: false
+  giving:
+    output: false
+  fundraisers:
+    output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: sections
+    values:
+      layout: null
+  - scope:
+      path: ""
+      type: giving
+    values:
+      layout: null
+  - scope:
+      path: ""
+      type: fundraisers
+    values:
+      layout: null

@@ -1,0 +1,16 @@
+<dialog class="fundraiser-dialog" id="fundraiser-dialog" aria-labelledby="fundraiser-title" data-event-id="{{ include.fundraiser.event_id | escape }}" data-auto-open="{{ include.fundraiser.auto_open }}">
+  <div class="fundraiser-dialog__inner">
+    <form method="dialog" class="fundraiser-dialog__close-form">
+      <button class="fundraiser-dialog__close" type="submit" aria-label="Close fundraiser details" autofocus>Close <span aria-hidden="true">×</span></button>
+    </form>
+    <p class="eyebrow eyebrow--light">Upcoming fundraiser</p>
+    <h2 id="fundraiser-title">{{ include.fundraiser.title | escape }}</h2>
+    <div class="prose">{{ include.fundraiser.content | markdownify }}</div>
+    {% if include.fundraiser.date_text and include.fundraiser.date_text != "" %}<p class="fundraiser-dialog__detail">{{ include.fundraiser.date_text | escape }}</p>{% endif %}
+    {% if include.fundraiser.location and include.fundraiser.location != "" %}<p class="fundraiser-dialog__detail">{{ include.fundraiser.location | escape }}</p>{% endif %}
+    <a class="button fundraiser-dialog__cta" href="{{ include.fundraiser.cta_url | escape }}">{{ include.fundraiser.cta_label | default: "View event & tickets" | escape }}</a>
+    <form method="dialog">
+      <button class="text-link fundraiser-dialog__later" type="submit">Maybe later</button>
+    </form>
+  </div>
+</dialog>
