@@ -1,4 +1,4 @@
-# Thunder Family Foundation
+# The Thunder Family Foundation
 
 A small, responsive Jekyll website for the Thunder Family Foundation and Manual Middle School. Page copy and fundraiser details live in Markdown; shared organization settings live in one YAML file. There is no CMS, JavaScript build step, analytics, or payment processing.
 

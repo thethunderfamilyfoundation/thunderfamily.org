@@ -1,5 +1,5 @@
 ---
-enabled: true
+enabled: false
 placeholder: true
 event_id: "fundraiser-placeholder"
 title: "Come together for Manual."
