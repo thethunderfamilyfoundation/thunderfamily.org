@@ -104,7 +104,7 @@ enabled: true
 Add or edit the explanatory paragraph here.
 ```
 
-The online-giving card uses `donation_url` from `_data/organization.yml`. The matching-gifts card links to the configured contact email when present. The check card currently directs donors to contact the foundation; add confirmed mailing instructions to its Markdown after they are available. The 501(c)(3) status and tax-deductibility note are shown with the giving methods.
+The online-giving card uses `donation_url` from `_data/organization.yml`. The matching-gifts card links to the configured contact email when present. Edit `_giving/check.md` to update the check drop-off and mailing instructions. The 501(c)(3) status and tax-deductibility note are shown with the giving methods.
 
 ### Fundraiser: edit, preview, and disable
 
@@ -149,8 +149,7 @@ Manrope is self-hosted as WOFF2, served with `font-display: swap`; its SIL Open 
 Before launch, confirm and configure:
 
 - The approved online donation URL.
-- A foundation contact email and, if it should be public, the EIN.
-- Check mailing instructions and any approved privacy/financial-information links.
+- Any approved privacy/financial-information links.
 - The original, approved student/community photo, its dimensions, and alt text if a hero image is desired.
 - The canonical site URL, repository `baseurl` or custom domain, and GitHub Pages settings.
 - Any real fundraiser title, stable ID, event details, and registration URL before replacing the placeholder.

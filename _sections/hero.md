@@ -8,4 +8,4 @@ image_width: 2048
 image_height: 1700
 ---
 
-The Thunder Family Foundation raises funds to support Manual Middle School and its students.
+The Thunder Family Foundation raises funds to support [Manual Middle School](https://manualms.dpsk12.org/) in Denver, Colorado, and its students.

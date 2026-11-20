@@ -1,6 +1,6 @@
 ---
 eyebrow: Our mission
-title: One school. A shared commitment.
+title: One community. A shared commitment.
 ---
 
 Our mission is simple: raise funds to support Manual Middle School and its students.
