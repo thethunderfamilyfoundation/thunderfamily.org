@@ -13,6 +13,9 @@ exclude:
   - vendor
   - .bundle
   - .github
+  - assets/favicon/README.md
+  - assets/favicon/favicon-*.png
+  - assets/favicon/preview.png
   - "Thunder Family Foundation footer redesign.png"
 
 collections:
